@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SENAIC 2026 - FCBIT UATx</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="main-wrapper">
+
+  <!-- encabezado -->
+  <header class="main-header">
+    <div class="home-logos-top">
+      <img src='img/uatx.png' alt="Logo UATx" class="logo-img">
+      <img src='img/años.png' alt="Logo 50 Años" class="logo-img">
+      <img src='img/fcbiyt.png' alt="Logo Ciencia y Tech" class="logo-img">
+      <img src='img/inaoe.png' alt="Logo INAOE" class="logo-img">
+      <img src='img/redica.png' alt="Logo RedICA" class="logo-img">
+    </div>
+
+    <div class="banner-senaic">
+      <div class="title-wrapper">
+        <h1 class="main-senaic-text">SENAIC</h1>
+        <span class="year-vertical">2026</span>
+      </div>
+      <h2 class="sub-senaic-text">XIV SEMINARIO Y ESCUELA NACIONAL DE<br>APRENDIZAJE E INTELIGENCIA COMPUTACIONAL</h2>
+      <h3 class="gold-subtitle">INVESTIGACIÓN – EDUCACIÓN – INNOVACIÓN<br>INTELIGENCIA QUE TRANSFORMA</h3>
+    </div>
+
+    <!-- navegacion -->
+    <nav class="top-nav-menu">
+      <a href="#" class="top-nav-btn active" id="btn-inicio" onclick="cambiarPestana(event, 'pestana-inicio')">Inicio</a>
+      <a href="#" class="top-nav-btn" id="btn-programa" onclick="cambiarPestana(event, 'pestana-programa')">Programa General</a>
+      <a href="#" class="top-nav-btn" id="btn-escuela" onclick="cambiarPestana(event, 'pestana-escuela')">Programa FCBIyT</a>
+      <a href="#" class="top-nav-btn" id="btn-magistrales" onclick="cambiarPestana(event, 'pestana-magistrales')">Conferencias Magistrales</a>
+      <a href="#" class="top-nav-btn" id="btn-mesadialogo" onclick="cambiarPestana(event, 'pestana-mesadialogo')">Mesa de Diálogo</a>
+      <a href="#" class="top-nav-btn" id="btn-sedes" onclick="cambiarPestana(event, 'pestana-sedes')">Sedes</a>
+      <a href="#" class="top-nav-btn" id="btn-comite" onclick="cambiarPestana(event, 'pestana-comite')">Comité Organizador</a>
+      <a href="#" class="top-nav-btn" id="btn-contacto" onclick="cambiarPestana(event, 'pestana-contacto')">Contacto</a>
+      <a href="#" class="top-nav-btn" id="btn-galeria" onclick="cambiarPestana(event, 'pestana-galeria')">Galería</a>
+      <a href="#" class="top-nav-btn" id="btn-guia" onclick="cambiarPestana(event, 'pestana-guia')">Guía Turística</a>
+    </nav>
+  </header>
+
+  <!-- contenedor principal -->
+  <main class="tab-container">
+
+    <!-- inicio -->
+    <div id="pestana-inicio" class="tab-content active">
+      <h2 class="slogan-principal">Un encuentro de aprendizaje e inteligencia computacional, donde la investigación se convierte en innovación y la innovación en nuevas posibilidades.</h2>
+
+      <div class="action-cards-container">
+        <div class="action-card" onclick="document.getElementById('btn-programa').click()">
+          <div class="card-icon">📅</div>
+          <div class="card-text card-text-date">
+            <h3>HORARIO DEL 7 AL 11 DE SEPTIEMBRE DEL 2026</h3>
+          </div>
+        </div>
+
+        <div class="action-card" onclick="document.getElementById('btn-sedes').click()">
+          <div class="card-icon">📍</div>
+          <div class="card-text card-text-loc">
+            <h3>UBICACIONES</h3>
+            <p>Teatro Universitario<br>Universidad Autónoma de Tlaxcala</p>
+            <p style="margin-top: 8px;">Facultad de Ciencias Básicas, Ingeniería y Tecnología<br>Universidad Autónoma de Tlaxcala</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- sedes -->
+    <div id="pestana-sedes" class="tab-content">
+      <section class="content-section">
+        <h2 class="section-title">Sedes y Rutas de Acceso</h2>
+        <p class="section-description">Ubica fácilmente los puntos de llegada y las sedes oficiales del SENAIC 2026. Haz clic en cualquier tarjeta para abrir Google Maps.</p>
+
+        <div class="maps-wrapper">
+
+          <div class="locations-grid">
+            <a href="https://maps.app.goo.gl/67qV6TXugmeS7tUaA" target="_blank" class="location-card">
+              <span class="loc-icon">✈️</span><div class="loc-info"><h4>Aeropuerto de la CDMX</h4><p>Llegadas internacionales y nacionales.</p></div>
+            </a>
+            <a href="https://maps.app.goo.gl/AyGBCkPwKx7UtF7FA" target="_blank" class="location-card">
+              <span class="loc-icon">🚌</span><div class="loc-info"><h4>TAPO, CDMX</h4><p>Terminal de Autobuses de Pasajeros de Oriente.</p></div>
+            </a>
+            <a href="https://maps.app.goo.gl/eQXJPteMPuEai6bB9" target="_blank" class="location-card">
+              <span class="loc-icon">🚍</span><div class="loc-info"><h4>Central ATAH, Tlaxcala</h4><p>Auto Transportes Apizaco Huamantla.</p></div>
+            </a>
+            <a href="https://maps.app.goo.gl/PRSwQohYYAgr1pxv9" target="_blank" class="location-card highlight-card">
+              <span class="loc-icon">💻</span><div class="loc-info"><h4>Facultad de Ciencias Básicas Ingeniería y Teconología (FCBIyT) UATx</h4><p>Sede principal: Talleres y Ponencias.</p></div>
+            </a>
+            <a href="https://maps.app.goo.gl/iMq4pWQdTpEEytAk8" target="_blank" class="location-card highlight-card">
+              <span class="loc-icon">🏛️</span><div class="loc-info"><h4>Residencia Universitaria UATx</h4><p>Residencia Universitaria</p></div>
+            </a>
+            <a href="https://maps.app.goo.gl/T5BXPNRnGoih59Sk8" target="_blank" class="location-card">
+              <span class="loc-icon">📚</span><div class="loc-info"><h4>Teatro Universitario</h4><p>Teatro Universitaio UATx.</p></div>
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- galeria -->
+    <div id="pestana-galeria" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <h2 class="section-title">Galería</h2>
+        <p class="section-description">Próximamente...</p>
+      </section>
+    </div>
+    <div id="pestana-guia" class="tab-content">
+      <h2 class="section-title">Guía Turística</h2>
+      <p class="section-description">En este documento podrás ver la guía turística</p>
+      <div style="text-align: Center; margin-bottom: 25px;">
+        <a href="CATALOGOTURISTICO2025ABRIL.pdf" target="_blank" class="btn-descargar-pdf">
+          Ver Guía Turística en PDF
+        </a>
+      </div>
+    </div>
+    <!-- programa general -->
+    <div id="pestana-programa" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <!-- contenedor del boton de descarga --><!-- contenedor del boton de visualizacion -->
+        <div style="text-align: center; margin-bottom: 25px;">
+          <a href="Programa_Final_SENAIC_2026 - Horarios.pdf" target="_blank" class="btn-descargar-pdf">
+            Ver Programa en PDF
+          </a>
+        </div>
+        <div style="margin: 40px 0 20px 0;">
+          <a href="https://maps.app.goo.gl/T5BXPNRnGoih59Sk8" target="_blank" class="day-location-link">
+            <h2 class="program-day-title" style="margin: 0; border: none; padding: 0; display: inline;">
+              Lunes 07 de septiembre
+            </h2>
+            <span class="location-badge">
+              📍 Teatro Universitario (Rectoría) ↗
+            </span>
+          </a>
+        </div>
+        <div class="speaker-grid">
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">Inauguración Oficial</h4><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 10:40 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/eduardomorales.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "¿Nos tenemos que preocupar de la IA?"</h4><p class="speaker-name">Dr. Eduardo Morales Manzanares</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:45 A 11:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">☕ Receso para comida</h4><div class="speaker-time-row"><span>🕒 11:45 A 12:00 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/miguelgonzalez.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Responsible and Efficient AI: Lightweight Architectures for Real-World Intelligence in Smart Environments"</h4><p class="speaker-name">Dr. Miguel González Mendoza</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 12:00 A 12:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/raulmonroy.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "An Explainable Autoencoder Integrating Regression and Classification Trees for Anomaly Detection"</h4><p class="speaker-name">Dr. Raúl Monroy Borja</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 12:45 A 13:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/alejandrotorres.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Inteligencia Artificial en el Análisis de Señales Cerebrales: Algunas Experiencias"</h4><p class="speaker-name">Dr. Alejandro Antonio Torres García</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 13:30 A 14:15 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🍽️ Comida</h4><div class="speaker-time-row"><span>🕒 14:20 A 15:20 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/marialuisa.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "IA y Ambientes de Aprendizaje: Diseñar, Aplicar y Medir"</h4><p class="speaker-name">Dra. María Lucía Barrón Estrada</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/ramonzatarain.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Sistemas Agenticos para programación"</h4><p class="speaker-name">Dr. Ramón Zatarain Cabada</p><div class="speaker-time-row"><span>📅 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 16:30 A 17:15 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+        </div>
+
+        <div style="margin: 40px 0 20px 0;">
+          <a href="https://maps.app.goo.gl/T5BXPNRnGoih59Sk8" target="_blank" class="day-location-link">
+            <h2 class="program-day-title" style="margin: 0; border: none; padding: 0; display: inline;">
+              Martes 08 de septiembre
+            </h2>
+            <span class="location-badge">
+              📍 Teatro Universitario (Rectoría) ↗
+            </span>
+          </a>
+        </div>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/carlosartemio.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Del Ajedrez al Nobel: pasado, presente y futuro de la Inteligencia Artificial"</h4><p class="speaker-name">Dr. Carlos Artemio Coello Coello</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/hugoterashima.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Hiperheurísticas Multi-objetivo"</h4><p class="speaker-name">Dr. Hugo Terashima Marín</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 11:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">☕ Receso para comida</h4><div class="speaker-time-row"><span>🕒 11:45 A 12:00 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/victoralejandro.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Agricultura Inteligente"</h4><p class="speaker-name">Dr. Victor Alejandro González Huitrón</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 12:00 A 12:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/aliciamorales.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Apoyo al diagnóstico temprano en mamografías: un enfoque híbrido inteligente"</h4><p class="speaker-name">Dra. Alicia Morales Reyes</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 12:45 A 13:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/claudiaferegrino.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Ciberseguridad Inteligente"</h4><p class="speaker-name">Dra. Claudia Feregrino Uribe</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 13:30 A 14:15 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🍽️ Comida</h4><div class="speaker-time-row"><span>🕒 14:20 A 15:20 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/juanhumberto.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Inteligencia Artificial aplicada a la solución de tareas en procesos industriales en México"</h4><p class="speaker-name">Dr. Juan Humberto Sossa Azuela</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/aldomarquez.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Predicciones futuras mediante Redes Neuronales Recurrentes: una aplicación en el clima"</h4><p class="speaker-name">Dr. Aldo Márquez Grajales</p><div class="speaker-time-row"><span>📅 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 16:30 A 17:15 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+        </div>
+
+        <div style="margin: 40px 0 20px 0;">
+          <a href="https://maps.app.goo.gl/T5BXPNRnGoih59Sk8" target="_blank" class="day-location-link">
+            <h2 class="program-day-title" style="margin: 0; border: none; padding: 0; display: inline;">
+              Miercoles 09 de septiembre
+            </h2>
+            <span class="location-badge">
+              📍 Teatro Universitario (Rectoría) ↗
+            </span>
+          </a>
+        </div>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/karinamariela.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Pensamiento Computacional Hoy, Inteligencia Artificial Mañana"</h4><p class="speaker-name">Dra. Karina Figueroa Mora</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/juanhumberto.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 1: "¿Porqué aprenden y son tan poderosas las redes neuronales"</h4><p class="speaker-name">Dr. Juan Humberto Sossa Azuela</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 2: "Introducción a la IA Verde"</h4><p class="speaker-name">Dra. Nancy Pérez Castro y Dra. Adriana Laura López Lobato</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 3: "Sistemas Difusos Base de la Inteligencia Computacional"</h4><p class="speaker-name">Dr. Carlos Alberto Reyes García</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/claudiaferegrino.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 4: "Ciberseguridad Inteligente"</h4><p class="speaker-name">Dra. Claudia Feregrino Uribe</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 5: "IA para Robótica: de Redes Neuronales a Modelos Multimodales"</h4><p class="speaker-name">Dr. Ivan Alejandro Gutierrez Giles</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 6: "Introducción a RAG (Retrieval-Augmented Generation)"</h4><p class="speaker-name">Dra. Karina Figueroa Mora</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🤝 Conferencia Patrocinadores</h4><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div></div></div>
+        </div>
+
+        <h2 class="program-day-title">Jueves 10 de septiembre</h2>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Ciencia de Datos en la Educación"</h4><p class="speaker-name">Dra. Yasmín Hernández Pérez</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 10:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 1: "Ciberseguridad Cuántica (La intersección de la computación cuántica y la ciberseguridad)"</h4><p class="speaker-name">Dr. Salvador Venegas Andraca</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 2: "Ciencia de Datos"</h4><p class="speaker-name">Dra. Daniela Moctezuma</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 3: "Analizando sentimientos en textos: de las palabras a los grandes modelos de lenguaje"</h4><p class="speaker-name">Dra. Delia Irazú Hernández Farías</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 4: "IA Generativa para la Investigación Científica"</h4><p class="speaker-name">Dr. José Luis Morales Reyes y Dr. Héctor Gabriel Acosta Mesa</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 5: "Reconocimiento automático de aspectos paralingüísticos mediante información acústica"</h4><p class="speaker-name">Dr. Humberto Pérez Espinosa</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 6: "¿Qué está viendo tu Red Neuronal? Implementación de Grad-CAM paso a paso"</h4><p class="speaker-name">Dr. Leopoldo Altamirano Robles y Dr. José de Jesús Velázquez Arreola</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🤝 Conferencia Patrocinadores</h4><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div></div></div>
+        </div>
+
+        <h2 class="program-day-title">Viernes 11 de septiembre</h2>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Inteligencia Artificial en la Educación Superior, Retos y Oportunidades"</h4><p class="speaker-name">Dr. Efrén Mezura Montes</p><div class="speaker-time-row"><span>📅 11 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🏛️ Protocolo Aniversario FCBIyT</h4><div class="speaker-time-row"><span>🕒 11:00 A 11:30 Hrs</span></div></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🗣️ Mesa de diálogo</h4><div class="speaker-time-row"><span>🕒 11:30 A 13:30 Hrs</span></div></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">☕ Receso para comida</h4><div class="speaker-time-row"><span>🕒 13:30 A 14:00 Hrs</span></div></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "IA Explicable"</h4><p class="speaker-name">Dr. Leopoldo Altamirano Robles</p><div class="speaker-time-row"><span>📅 11 de septiembre</span></div><div class="speaker-time-row"><span>🕒 14:00 A 14:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🥂 Brindis de Clausura</h4><p class="speaker-name">Sala de Lectura en Infoteca Central</p><div class="speaker-time-row"><span>🕒 14:45 A 17:00 Hrs</span></div></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- programa escuela -->
+    <div id="pestana-escuela" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <h2 class="section-title" style="margin-bottom: 30px;">Programa Escuela</h2>
+        <p class="section-description">Actividades a realizarse de manera exclusiva en las instalaciones de la Facultad de Ciencias Básicas, Ingeniería y Tecnología (FCBIyT).</p>
+
+        <!-- miercoles -->
+        <h2 class="program-day-title">Miércoles 09 de septiembre</h2>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/karinamariela.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Pensamiento Computacional Hoy, Inteligencia Artificial Mañana"</h4><p class="speaker-name">Dra. Karina Figueroa Mora</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/juanhumberto.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 1: "¿Porqué aprenden y son tan poderosas las redes neuronales"</h4><p class="speaker-name">Dr. Juan Humberto Sossa Azuela</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 2: "Introducción a la IA Verde"</h4><p class="speaker-name">Dra. Nancy Pérez Castro y Dra. Adriana Laura López Lobato</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 3: "Sistemas Difusos Base de la Inteligencia Computacional"</h4><p class="speaker-name">Dr. Carlos Alberto Reyes García</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/claudiaferegrino.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 4: "Ciberseguridad Inteligente"</h4><p class="speaker-name">Dra. Claudia Feregrino Uribe</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 5: "IA para Robótica: de Redes Neuronales a Modelos Multimodales"</h4><p class="speaker-name">Dr. Ivan Alejandro Gutierrez Giles</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 6: "Introducción a RAG (Retrieval-Augmented Generation)"</h4><p class="speaker-name">Dra. Karina Figueroa Mora</p><div class="speaker-time-row"><span>📅 09 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🤝 Conferencia Patrocinadores</h4><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div></div></div>
+        </div>
+
+        <!-- jueves -->
+        <h2 class="program-day-title">Jueves 10 de septiembre</h2>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Plenaria: "Ciencia de Datos en la Educación"</h4><p class="speaker-name">Dra. Yasmín Hernández Pérez</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 10:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 1: "Ciberseguridad Cuántica (La intersección de la computación cuántica y la ciberseguridad)"</h4><p class="speaker-name">Dr. Salvador Venegas Andraca</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 2: "Ciencia de Datos"</h4><p class="speaker-name">Dra. Daniela Moctezuma</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 3: "Analizando sentimientos en textos: de las palabras a los grandes modelos de lenguaje"</h4><p class="speaker-name">Dra. Delia Irazú Hernández Farías</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 4: "IA Generativa para la Investigación Científica"</h4><p class="speaker-name">Dr. José Luis Morales Reyes y Dr. Héctor Gabriel Acosta Mesa</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 5: "Reconocimiento automático de aspectos paralingüísticos mediante información acústica"</h4><p class="speaker-name">Dr. Humberto Pérez Espinosa</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Tutorial 6: "¿Qué está viendo tu Red Neuronal? Implementación de Grad-CAM paso a paso"</h4><p class="speaker-name">Dr. Leopoldo Altamirano Robles y Dr. José de Jesús Velázquez Arreola</p><div class="speaker-time-row"><span>📅 10 de septiembre</span></div><div class="speaker-time-row"><span>🕒 11:00 A 15:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card break-card"><div class="speaker-details"><h4 class="speaker-talk-title">🤝 Conferencia Patrocinadores</h4><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- magistrales -->
+    <div id="pestana-magistrales" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <h2 class="section-title" style="margin-bottom: 30px;">Conferencias Magistrales</h2>
+        <div class="speaker-grid">
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/eduardomorales.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "¿Nos tenemos que preocupar de la IA?"</h4><p class="speaker-name">Dr. Eduardo Morales Manzanares</p><div class="speaker-time-row"><span>📅 Lunes 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:45 A 11:45 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/marialuisa.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "IA y Ambientes de Aprendizaje: Diseñar, Aplicar y Medir"</h4><p class="speaker-name">Dra. María Lucía Barrón Estrada</p><div class="speaker-time-row"><span>📅 Lunes 07 de septiembre</span></div><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/carlosartemio.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Del Ajedrez al Nobel: pasado, presente y futuro de la Inteligencia Artificial"</h4><p class="speaker-name">Dr. Carlos Artemio Coello Coello</p><div class="speaker-time-row"><span>📅 Martes 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src='img/juanhumberto.png' alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Inteligencia Artificial aplicada a la solución de tareas en procesos industriales en México"</h4><p class="speaker-name">Dr. Juan Humberto Sossa Azuela</p><div class="speaker-time-row"><span>📅 Martes 08 de septiembre</span></div><div class="speaker-time-row"><span>🕒 15:30 A 16:30 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+          <div class="speaker-card"><div class="speaker-photo"><img src="img/ponente.png" alt="Ponente"></div><div class="speaker-details"><h4 class="speaker-talk-title">Conferencia Magistral: "Inteligencia Artificial en la Educación Superior, Retos y Oportunidades"</h4><p class="speaker-name">Dr. Efrén Mezura Montes</p><div class="speaker-time-row"><span>📅 Viernes 11 de septiembre</span></div><div class="speaker-time-row"><span>🕒 10:00 A 11:00 Hrs</span></div><button class="btn-more-info" onclick="abrirModal(this)">Más información</button></div></div>
+        </div>
+      </section>
+    </div>
+
+    <!-- comite -->
+    <div id="pestana-comite" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <div class="comite-container">
+          <h2 class="comite-main-title">COMITÉ DE ORGANIZACIÓN</h2>
+          <div class="comite-section">
+            <h3 class="comite-category">LOCAL</h3>
+            <p class="comite-institution">POR LA FACULTAD DE CIENCIAS BÁSICAS, INGENIERÍA Y TECNOLOGÍAS DE LA UNIVERSIDAD AUTÓNOMA DE TLAXCALA (UATLAX)</p>
+            <ul class="comite-list">
+              <li>Dr. Ever Juárez Guerra</li><li>M.C. Carolina Rocío Sánchez Pérez</li><li>Dr. Alberto Portilla Flores</li><li>M.C. Aydee Rojas Escobar</li><li>M.C. Carlos Santacruz Olmos</li><li>M.C. Esmeralda Méndez Hernández</li><li>M.I.S.C.I. Everardo Carlos Guevara Hernández</li><li>Dr. Francisco Javier Albores Velasco</li><li>Dr. Jorge Alberto Sánchez Martínez</li><li>M.C. Juventino Montiel Hernández</li><li>Dra. Leticia Flores Pulido</li><li>M.C. Ma. Guadalupe Cervantes Castillo</li><li>M.C. Ma. Guadalupe Cruz Becerril</li><li>Dra. María del Rocío Ochoa Montiel</li><li>M.C. María Margarita Labastida Roldán</li><li>M.C. Marlon Luna Sánchez</li><li>Dra. Marva Angélica Mora Lumbreras</li><li>M.I.A. Norma Sánchez Sánchez</li><li>Ing. Patricia Trejo Xelhuantzi</li><li>M.C. Patrick Hernández Cuamatzi</li><li>Ing. Rogelio Cervantes Hernández</li><li>M.T.E. Xochipilli Acoltzi Xochitiotzi</li>
+            </ul>
+          </div>
+          <div class="comite-section">
+            <h3 class="comite-category">NACIONAL</h3>
+            <p class="comite-institution">POR LA RED TEMÁTICA EN INTELIGENCIA COMPUTACIONAL APLICADA, REDICA</p>
+            <ul class="comite-list">
+              <li>Dr. Carlos Alberto Reyes García, CCC-INAOE</li>
+              <li>Dra. María Lucía Barrón Estrada, Tecnológico Nacional de México, Instituto Tecnológico de Culiacán</li>
+              <li>Dra. Karina Mariela Figueroa Mora, Universidad Michoacana de San Nicolás de Hidalgo</li>
+              <li>Dra. Yasmín Hernández Pérez, Tecnológico Nacional de México, Centro Nacional de Investigación y Desarrollo Tecnológico</li>
+              <li>Dr. Efrén Mezura Montes, Director del Instituto de Investigaciones en Inteligencia Artificial, Universidad Veracruzana</li>
+              <li>Dra. Alicia Morales Reyes, CCC-INAOE</li>
+              <li>Dr. Ramón Zatarain Cabada, Tecnológico Nacional de México, Instituto Tecnológico de Culiacán</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- mesa -->
+    <div id="pestana-mesadialogo" class="tab-content"><section class="content-section"><h2 class="section-title">Mesa de Diálogo</h2><p>Próximamente más información sobre panelistas.</p></section></div>
+
+    <!-- contacto -->
+    <!-- contacto -->
+    <div id="pestana-contacto" class="tab-content">
+      <section class="content-section" style="background-color: #fff;">
+        <h2 class="section-title">Contacto</h2>
+        <p class="section-description">Ponte en contacto con las instituciones organizadoras del SENAIC 2026.</p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 30px; text-align: left; max-width: 1000px; margin: 0 auto;">
+
+          <!-- contacto uatx -->
+          <div style="background: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.03);">
+            <h3 style="color: #8b1c1c; font-size: 20px; font-weight: 900; margin-bottom: 15px; border-bottom: 2px solid #ffb700; padding-bottom: 5px; display: inline-block;">Contacto UATlax</h3>
+            <p style="font-size: 14px; color: #333; line-height: 1.6;">Próximamente más información sobre medios de contacto locales.</p>
+          </div>
+
+          <!-- contacto inaoe -->
+          <div style="background: #fbfbfb; border: 1px solid #e0e0e0; border-radius: 12px; padding: 25px; box-shadow: 0 4px 8px rgba(0,0,0,0.03);">
+            <h3 style="color: #8b1c1c; font-size: 20px; font-weight: 900; margin-bottom: 15px; border-bottom: 2px solid #ffb700; padding-bottom: 5px; display: inline-block;">Contacto INAOE</h3>
+
+            <p style="font-size: 14px; color: #333; font-weight: bold; margin-bottom: 5px;">Dr. Carlos Alberto Reyes García</p>
+            <p style="font-size: 13px; color: #555; margin-bottom: 3px;">Teléfono: +52 222 2663100 Ext. 8315</p>
+            <p style="font-size: 13px; color: #555; margin-bottom: 15px;">Correo: kargaxii at inaoep dot mx</p>
+
+            <p style="font-size: 14px; color: #333; font-weight: bold; margin-bottom: 5px;">Dra. Alicia Morales Reyes</p>
+            <p style="font-size: 13px; color: #555; margin-bottom: 3px;">Teléfono: +52 222 2663100 Ext. 8204</p>
+            <p style="font-size: 13px; color: #555; margin-bottom: 15px;">Correo: a.morales at inaoep dot mx</p>
+
+            <div style="margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ccc;">
+              <p style="font-size: 13px; color: #666; line-height: 1.5; font-weight: 600;">
+                <strong>Instituto Nacional de Astrofísica, Óptica y Electrónica</strong><br>
+                Coordinación de Ciencias Computacionales<br>
+                Luis Enrique Erro #1<br>
+                Tonantzintla, Puebla<br>
+                72840, México
+              </p>
+            </div>
+          </div>
+
+        </div>
+      </section>
+    </div>
+
+  </main>
+</div>
+
+<!-- modal -->
+<div id="speaker-modal" class="modal-overlay">
+  <div class="modal-wrapper">
+    <span class="modal-close" onclick="cerrarModal()">&times;</span>
+
+    <!-- pestanas superiores del modal -->
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab-presentacion" onclick="cambiarTabModal('presentacion')">PRESENTACIÓN</div>
+      <div class="modal-tab" id="tab-semblanza" onclick="cambiarTabModal('semblanza')">SEMBLANZA</div>
+    </div>
+
+    <!-- vista 1: presentacion -->
+    <div id="modal-presentacion" class="modal-body active" style="background-image: url('img/fondo_presentacion.png');">
+
+      <!-- banner presentacion -->
+      <div class="pres-header-banner">
+        <div class="pres-banner-empty-space"></div>
+        <div class="pres-banner-text-box">
+          <h2>XIV Seminario y Escuela Nacional de<br>Aprendizaje e Inteligencia Computacional</h2>
+          <h1>SENAIC 2026</h1>
+        </div>
+        <div class="pres-banner-empty-space"></div>
+      </div>
+
+      <div class="modal-pres-content">
+
+        <!-- titulo superior centrado -->
+        <h3 class="modal-talk-type" id="mod-type">CONFERENCIA MAGISTRAL</h3>
+
+        <!-- caja roja rectangular con bordes suaves -->
+        <div class="modal-talk-box">
+          <h2 id="mod-title">Del Ajedrez al Nobel: pasado, presente y futuro de la Inteligencia Artificial</h2>
+        </div>
+
+        <div class="modal-speaker-info">
+          <!-- foto a la izquierda -->
+          <div class="mod-photo-container">
+            <img id="mod-photo" src="img/ponente.png" alt="Ponente">
+          </div>
+
+          <!-- texto centrado a la derecha -->
+          <div class="modal-speaker-details">
+            <h3 id="mod-name">Dr. Carlos Artemio Coello Coello</h3>
+            <p id="mod-institution-abbr" class="modal-inst">CINVESTAV</p>
+
+            <div class="modal-datetime">
+              <span class="mod-badge">
+                  <span class="mod-icon-circle">📅</span>
+                  <span id="mod-date">Martes 08 de Septiembre</span>
+              </span>
+              <span class="mod-badge">
+                  <span class="mod-icon-circle">🕒</span>
+                  <span id="mod-time">10:00 a 11:00 Hrs</span>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- vista 2: semblanza -->
+    <div id="modal-semblanza" class="modal-body" style="background-image: url('img/fondo_semblanza.png');">
+
+      <!-- banner semblanza -->
+      <div class="sem-header-banner">
+        <div class="sem-banner-empty-space"></div>
+        <div class="sem-banner-gold-box">
+          <h2>XIV Seminario y Escuela Nacional de<br>Aprendizaje e Inteligencia Computacional</h2>
+          <h1>SENAIC 2026</h1>
+        </div>
+      </div>
+
+      <div class="modal-sem-content">
+        <!-- titulo de charla centrado -->
+        <h2 class="sem-talk-title" id="mod-sem-title">Del Ajedrez al Nobel: pasado, presente y futuro de la Inteligencia Artificial</h2>
+
+        <!-- nombre y grado alineados a la izquierda -->
+        <div class="sem-speaker-header">
+          <h3 class="sem-speaker-name" id="mod-sem-name">Dr. Carlos Artemio Coello Coello</h3>
+          <h4 class="sem-speaker-degree" id="mod-sem-degree">Doctor en Ciencias de la Computación</h4>
+        </div>
+
+        <!-- scroll para la bio -->
+        <div id="mod-sem-bio-container" class="sem-bio-scroll">
+          <p class="sem-bio" id="mod-sem-bio">Doctor en Ciencias de la Computación...</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<script src='js/app.js'></script>
+</body>
+</html>
