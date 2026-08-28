@@ -22,9 +22,67 @@ function cambiarPestana(evento, idPestana) {
   }
 }
 
+/* Funcionalidad para la Galería de Fotos (Subir y Eliminar) */
+document.addEventListener('DOMContentLoaded', () => {
+  const uploadInput = document.getElementById('foto-upload');
+  const galleryGrid = document.getElementById('gallery-grid');
+
+  if(uploadInput && galleryGrid) {
+    uploadInput.addEventListener('change', function(e) {
+      const files = e.target.files;
+      if(files.length === 0) return;
+
+      Array.from(files).forEach(file => {
+        // Validar que sea imagen
+        if(!file.type.startsWith('image/')) return;
+
+        const reader = new FileReader();
+        reader.onload = function(evt) {
+          const imgSrc = evt.target.result;
+
+          // Crear contenedor de la imagen individual
+          const divItem = document.createElement('div');
+          divItem.className = 'gallery-item';
+
+          // Crear la imagen
+          const imgEl = document.createElement('img');
+          imgEl.src = imgSrc;
+          imgEl.alt = "Foto de Galería";
+
+          // Crear botón eliminar
+          const delBtn = document.createElement('button');
+          delBtn.className = 'delete-photo-btn';
+          delBtn.innerHTML = '×';
+          delBtn.title = "Eliminar foto";
+          delBtn.onclick = function(e) {
+            e.stopPropagation(); // Evitar comportamientos no deseados
+            divItem.remove();
+          };
+
+          divItem.appendChild(imgEl);
+          divItem.appendChild(delBtn);
+
+          // Insertar foto después de la tarjeta de "Agregar"
+          const addCard = galleryGrid.querySelector('.add-photo-card');
+          if(addCard) {
+            addCard.insertAdjacentElement('afterend', divItem);
+          } else {
+            galleryGrid.appendChild(divItem);
+          }
+        }
+        reader.readAsDataURL(file);
+      });
+
+      // Limpiar input para permitir subir la misma foto después si se borra
+      uploadInput.value = '';
+    });
+  }
+});
+
 /* json ponentes */
 const ponentesDB = {
   "Dr. Eduardo Morales Manzanares": {
+    isDual: false,
     grado: "Doctor en Ciencias de la Computación",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
@@ -34,6 +92,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Miguel González Mendoza": {
+    isDual: false,
     grado: "Doctor en Inteligencia Artificial",
     institucion_corta: "ITESM",
     facultad: "Campus Edo. Mex.",
@@ -43,6 +102,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Raúl Monroy Borja": {
+    isDual: false,
     grado: "Doctor en Inteligencia Artificial",
     institucion_corta: "ITESM",
     facultad: "Campus Edo. Mex.",
@@ -52,6 +112,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Alejandro Antonio Torres García": {
+    isDual: false,
     grado: "Doctor en Ciencias Computacionales",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
@@ -61,6 +122,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dra. María Lucía Barrón Estrada": {
+    isDual: false,
     grado: "Doctora en Filosofía en Ciencias de la Computación",
     institucion_corta: "TecNM",
     facultad: "IT Culiacán",
@@ -70,6 +132,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Ramón Zatarain Cabada": {
+    isDual: false,
     grado: "Doctor en Filosofía en Ciencias de la Computación",
     institucion_corta: "TecNM",
     facultad: "IT Culiacán",
@@ -79,6 +142,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Carlos Artemio Coello Coello": {
+    isDual: false,
     grado: "Doctor en Ciencias de la Computación",
     institucion_corta: "CINVESTAV",
     facultad: "Departamento de Computación",
@@ -88,15 +152,17 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Hugo Terashima Marín": {
+    isDual: false,
     grado: "Doctor en Informática",
     institucion_corta: "ITESM",
-    facultad: "Escuela de Ingeniería y Ciencias",
+    facultad: "Campus Monterrey",
     institucion_larga: "Tecnológico de Monterrey, Campus Monterrey",
     foto: 'img/hugoterashima.png',
     semblanza: `Obtuvo el Doctorado en Informática en el Tecnológico de Monterrey, Campus Monterrey, en 1998. Actualmente se desempeña como Profesor Investigador Titular en la Escuela de Ingeniería y Ciencias y es Miembro del Grupo de Investigación en Inteligencia Artificial Avanzada.<br><br>Sus áreas de investigación abarcan la inteligencia computacional, los modelos heurísticos, metaheurísticos e híperheurísticos para problemas de optimización, la generación automática de algoritmos, así como las aplicaciones de inteligencia artificial y aprendizaje automático. Ha fungido como Investigador Principal en múltiples proyectos financiados por el CONACyT, la industria y diversos entornos, colaborando activamente con investigadores de instituciones nacionales e internacionales.<br><br>Cuenta con un reconocido prestigio académico respaldado por sus membresías en organismos de alto nivel:<br>• Sistema Nacional de Investigadoras e Investigadores (SNII): Nivel II.<br>• Academia Mexicana de Ciencias.<br>• Academia Mexicana de Computación.<br>• Institute of Electrical and Electronics Engineers (IEEE): Miembro Senior.<br><br>Posee una prolífica trayectoria científica con más de 145 artículos publicados en conferencias y revistas indizadas. En el ámbito de la mentoría y formación de recursos humanos de alto nivel, ha supervisado a: 11 Investigadores Posdoctorales, 8 Tesistas Doctorales y 38 Tesistas de Maestría.<br><br>En el Tecnológico de Monterrey, Campus Monterrey, ha desempeñado una destacada labor directiva y de diseño académico, ocupando los siguientes cargos: Líder del Grupo de Investigación en Sistemas Inteligentes. Diseñador y Director del Programa de Posgrado en Ciencias Computacionales. Director del Doctorado en Tecnologías de Información y Comunicaciones. Director de la Maestría en Sistemas Inteligentes. Director del Doctorado en Inteligencia Artificial. Director de Doctorados y Director de Posgrados.`,
     cita: ""
   },
   "Dr. Victor Alejandro González Huitrón": {
+    isDual: false,
     grado: "Doctor en Comunicaciones y Electrónica",
     institucion_corta: "TecNM",
     facultad: "IT Querétaro",
@@ -106,6 +172,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dra. Alicia Morales Reyes": {
+    isDual: false,
     grado: "Doctora en Ciencias e Ingeniería",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
@@ -115,6 +182,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dra. Claudia Feregrino Uribe": {
+    isDual: false,
     grado: "Doctora en Ingeniería en Sistemas Digitales",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
@@ -124,6 +192,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Juan Humberto Sossa Azuela": {
+    isDual: false,
     grado: "Doctor en Informática",
     institucion_corta: "CIC - IPN",
     facultad: "Centro de Investigación en Computación",
@@ -133,6 +202,7 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Aldo Márquez Grajales": {
+    isDual: false,
     grado: "Doctor en Inteligencia Artificial",
     institucion_corta: "UAEH",
     facultad: "Área Académica de Computación y Electrónica",
@@ -142,93 +212,147 @@ const ponentesDB = {
     cita: ""
   },
   "Dra. Karina Mariela Figueroa Mora": {
+    isDual: false,
     grado: "Doctora en Ciencias de la Computación",
     institucion_corta: "UMSNH",
-    facultad: "Facultad de Ciencias Físico Matemáticas",
+    facultad: "Facultad de Ingeniería Eléctrica",
     institucion_larga: "Universidad Michoacana de San Nicolás de Hidalgo",
     foto: 'img/karinamariela.png',
-    semblanza: `Doctora en Ciencias de la Computación por la Universidad de Chile, Ingeniera Electricista y Maestra en Ingeniería Eléctrica, opción Sistemas Computacionales, por la Universidad Michoacana de San Nicolás de Hidalgo.<br><br>Es profesora e investigadora de la Facultad de Ciencias Físico Matemáticas y miembro del Sistema Nacional de Investigadoras e Investigadores (SNII). Su trabajo se centra en la recuperación de información y el desarrollo de software educativo.<br><br>Actualmente es Editora en Jefe de la revista Komputer Sapiens, reconocida por CONAHCyT y especializada en Inteligencia Artificial; colabora con AmphoraHealth en ciencia de datos aplicada a bases de datos médicas y lidera el Cuerpo Académico Algoritmos y Estructuras de Datos.`,
+    semblanza: `Doctora en Ciencias, mención Computación, por la Universidad de Chile, es profesora e investigadora de la Facultad de Ciencias Físico-Matemáticas de la Universidad Michoacana de San Nicolás de Hidalgo.<br><br>Es miembro del Sistema Nacional de Investigadoras e Investigadores, Nivel I, y sus principales líneas de investigación se enfocan en el diseño y análisis de algoritmos, problemas de búsqueda y Recuperación de Información, áreas en las que cuenta con diversas publicaciones científicas.<br><br>Es miembro regular y Secretaria del Consejo Directivo de la Academia Mexicana de Computación, además de fundadora del Grupo de Mujeres en la Computación. Fue Presidenta de la Sociedad Mexicana de Ciencia de la Computación (2021–2023), contribuyendo activamente al fortalecimiento de la computación en México.<br><br>Actualmente es Editora en Jefe de Komputer Sapiens, revista de divulgación especializada en Inteligencia Artificial, y colabora con Amphora Health en proyectos de ciencia de datos aplicada al ámbito médico.<br><br>Participa en la organización de iniciativas académicas como el Seminario Iberoamericano de Pensamiento Computacional (SIPECO) y la Escuela Nacional de Aprendizaje de Inteligencia Computacional (SENAIC).<br><br>Convencida de que la educación es el motor de transformación de una sociedad, combina la investigación, la divulgación y la formación de nuevas generaciones en computación.`,
     cita: `"La educación es la principal vía de transformación de un país."`
   },
   "Dra. Yasmín Hernández Pérez": {
-    grado: "Investigadora",
-    institucion_corta: "TecNM",
-    facultad: "Centro Nacional de Investigación y Desarrollo Tecnológico",
+    isDual: false,
+    grado: "Doctora en Ciencias Computacionales",
+    institucion_corta: "Cenidet",
+    facultad: "Campus Centro Nacional de Investigación y Desarrollo Tecnológico",
     institucion_larga: "Tecnológico Nacional de México",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
-  "Dr. Salvador Venegas Andraca": {
-    grado: "Investigador",
-    institucion_corta: "Tecnológico de Monterrey",
-    facultad: "Escuela de Ingeniería y Ciencias",
-    institucion_larga: "Tecnológico de Monterrey",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
-  "Dra. Daniela Moctezuma": {
-    grado: "Investigadora",
-    institucion_corta: "CentroGeo",
-    facultad: "Ciencias de Información Geoespacial",
-    institucion_larga: "Centro de Investigación en Ciencias de Información Geoespacial",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
-  "Dra. Delia Irazú Hernández Farías": {
-    grado: "Investigadora",
-    institucion_corta: "Institución no especificada",
-    facultad: "Investigación",
-    institucion_larga: "Institución no especificada",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
-  "Dr. José Luis Morales Reyes y Dr. Héctor Gabriel Acosta Mesa": {
-    grado: "Investigadores",
-    institucion_corta: "Institución no especificada",
-    facultad: "Investigación",
-    institucion_larga: "Institución no especificada",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
-    cita: ""
-  },
-  "Dr. Humberto Pérez Espinosa": {
-    grado: "Investigador",
-    institucion_corta: "CICESE",
-    facultad: "Ciencias Computacionales",
-    institucion_larga: "Centro de Investigación Científica y de Educación Superior de Ensenada",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
-  "Dr. Leopoldo Altamirano Robles y Dr. José de Jesús Velázquez Arreola": {
-    grado: "Investigadores",
-    institucion_corta: "INAOE",
-    facultad: "Ciencias Computacionales",
-    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
+    foto: 'img/yasminhernandez.png',
+    semblanza: `Doctora en Ciencias Computacionales por el Tecnológico de Monterrey, Maestra en Ciencias Computacionales por Cenidet e Ingeniera en Sistemas Computacionales por el Instituto Tecnológico de Ciudad Madero.<br><br>Durante su formación doctoral realizó una estancia de investigación en la Universidad de la Columbia Británica (UBC), en Vancouver, Canadá.<br><br>Es profesora investigadora del Departamento de Ciencias Computacionales de Cenidet y cuenta con experiencia como investigadora en el Instituto Nacional de Electricidad y Energías Limpias.<br><br>Su investigación se centra en la Inteligencia Artificial, particularmente en sistemas tutores inteligentes, minería de datos educativos, computación afectiva y procesamiento de lenguaje natural.<br><br>Es autora de más de 150 publicaciones científicas en revistas, libros y memorias de congresos internacionales, además de haber dirigido tesis de licenciatura, maestría y doctorado. Es columnista de la revista Komputer Sapiens.<br><br>Es miembro del Sistema Nacional de Investigadoras e Investigadores, la Academia Mexicana de Computación, la Sociedad Mexicana de Ciencia de la Computación, la Sociedad Mexicana de Inteligencia Artificial y la Asociación Mexicana de Procesamiento de Lenguaje Natural.<br><br>También participa en la Red Temática en Inteligencia Computacional Aplicada (RedICA) del CONACYT.`,
     cita: ""
   },
   "Dr. Efrén Mezura Montes": {
-    grado: "Investigador",
-    institucion_corta: "Universidad Veracruzana",
+    isDual: false,
+    grado: "Doctor en Ciencias",
+    institucion_corta: "UV",
     facultad: "Instituto de Investigaciones en Inteligencia Artificial",
     institucion_larga: "Universidad Veracruzana",
-    foto: "img/ponente.png",
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    foto: 'img/efrenmezura.png',
+    semblanza: `Director del Instituto de Investigaciones en Inteligencia Artificial de la Universidad Veracruzana. Se interesa por el diseño y el estudio de algoritmos inspirados en la naturaleza para el aprendizaje computacional y la optimización, con aplicaciones en los ámbitos médico y de la ingeniería. Ha publicado más de 200 artículos y cuatro libros, que suman más de 12,600 citas en Google Scholar.<br><br>Es miembro Nivel III del SNII, presidente de la Sociedad Mexicana de Ciencia de la Computación, miembro regular de la Academia Mexicana de Ciencias y de su Comisión de Premios, miembro regular de la Academia Mexicana de Computación y miembro del Comité Técnico Asesor de la Red Nacional de Inteligencia Computacional Aplicada.<br><br>Es editor asociado de ocho revistas JCR y miembro de comités técnicos internacionales de la IEEE en inteligencia artificial. Recibió el Premio Estatal de Ciencia y Tecnología 2023 en Veracruz y la Medalla al Mérito de la Universidad Veracruzana en 2024.<br><br>Actualmente realiza investigaciones sobre la inteligencia artificial explicable y verde y, además, es un entusiasta divulgador de la ciencia que busca socializar, desmitificar y fomentar el uso ético de la inteligencia artificial.`,
     cita: ""
   },
   "Dr. Leopoldo Altamirano Robles": {
-    grado: "Investigador",
+    isDual: false,
+    grado: "Doctor en Informática",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
-    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica",
-    foto: "img/ponente.png",
+    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    foto: 'img/leopoldoaltamirano.png',
     semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    cita: ""
+  },
+  "Dr. Salvador Elías Venegas Andraca": {
+    isDual: false,
+    grado: "Doctor en Física",
+    institucion_corta: "ITESM",
+    facultad: "Campus Edo. Mex",
+    institucion_larga: "Tecnológico de Monterrey",
+    foto: 'img/salvadorelias.png',
+    semblanza: `Científico, emprendedor y consultor mexicano. Es Doctor en Física y Maestro en Ciencias por la Universidad de Oxford, Maestro en Administración e Ingeniero en Sistemas Electrónicos por el Tecnológico de Monterrey. Realizó una estancia postdoctoral como profesor visitante en Harvard University.<br><br>Es profesor del Tecnológico de Monterrey y de la Facultad de Ciencias de la UNAM, además de fundador e investigador principal de The Unconventional Computing Lab. Es reconocido como pionero de la computación cuántica en México y referente internacional en el área.<br><br>Su investigación abarca algoritmos cuánticos, Quantum Machine Learning, Inteligencia Artificial, caminatas cuánticas, procesamiento cuántico de imágenes, biología cuántica y ciberseguridad cuántica.<br><br>Cuenta con más de 60 publicaciones científicas, dos libros y más de 3,100 citas en Web of Science. Es coautor de 13 white papers sobre tecnología cuántica y ciberseguridad del Foro Económico Mundial y ha impartido más de 300 conferencias y cursos en 16 países.<br><br>Es miembro de la Academia Mexicana de Ciencias, investigador Nivel III del Sistema Nacional de Investigadoras e Investigadores, Senior Member y Distinguished Speaker de ACM, y miembro del Quantum Economy Network del Foro Económico Mundial. Desde 2020 forma parte del 2 % de los científicos más citados del mundo en su área de especialidad.`,
+    cita: ""
+  },
+  "Dra. Daniela Alejandra Moctezuma Ochoa": {
+    isDual: false,
+    grado: "Doctora en Tecnologías de la Información y Sistemas Informáticos",
+    institucion_corta: "CentroGEO",
+    facultad: "Centro de Investigación en Ciencias de Información Geoespacial",
+    institucion_larga: "Centro de Investigación en Ciencias de Información Geoespacial",
+    foto: 'img/danielaalejandra.png',
+    semblanza: `Doctora en Tecnologías de la Información y Sistemas Informáticos por la Universidad Rey Juan Carlos, España. Actualmente es profesora-investigadora del Centro de Investigación en Ciencias de Información Geoespacial (CentroGEO), en su sede de Aguascalientes, donde se desempeña como Coordinadora Académica.<br><br>Es miembro del Sistema Nacional de Investigadoras e Investigadores, Nivel I y fue reconocida en 2024 con el Premio Talento Joven en Computación, otorgado por la Academia Mexicana de Computación.<br><br>Sus principales líneas de investigación incluyen Visión Artificial, Aprendizaje Automático, clasificación de texto, percepción remota, Visión y Lenguaje y sistemas inteligentes de videovigilancia.<br><br>Ha dirigido y colaborado en proyectos de investigación básica y aplicada, desarrollando soluciones orientadas a instituciones públicas y de gobierno, con énfasis en la aplicación de tecnologías de Inteligencia Artificial para resolver problemas de impacto social.`,
+    cita: ""
+  },
+  "Dra. Delia Irazú Hernández Farías": {
+    isDual: false,
+    grado: "Investigadora",
+    institucion_corta: "INAOE",
+    facultad: "Ciencias Computacionales",
+    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    foto: 'img/delia.png',
+    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    cita: ""
+  },
+  "Dr. Humberto Pérez Espinosa": {
+    isDual: false,
+    grado: "Doctor en Ciencias Computacionales",
+    institucion_corta: "INAOE",
+    facultad: "Ciencias Computacionales",
+    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    foto: 'img/humbertoperez.png',
+    semblanza: `Doctor y Maestro en Ciencias Computacionales por el INAOE, y Licenciado en Ciencias Computacionales por la Benemérita Universidad Autónoma de Puebla. Su trayectoria combina la investigación científica, el desarrollo tecnológico y la transferencia de conocimiento.<br><br>Actualmente es Investigador de la Coordinación de Ciencias Computacionales del INAOE y miembro del Sistema Nacional de Investigadoras e Investigadores, Nivel II. Previamente se desempeñó como investigador en la Unidad de Transferencia Tecnológica Tepic del CICESE.<br><br>Cuenta con experiencia en la industria tecnológica y es fundador de Prointbis SAPI de C.V., empresa dedicada al desarrollo de tecnologías para el reconocimiento de emociones en la voz.<br><br>Sus líneas de investigación incluyen paralingüística computacional, análisis inteligente de audio, computación afectiva y procesamiento de bioseñales.<br><br>Es autor de más de 60 publicaciones científicas y ha contribuido a la formación de recursos humanos mediante la dirección de tesis de licenciatura, maestría y doctorado. Su trabajo en desarrollo tecnológico ha sido reconocido por la Comisión Transversal de Tecnología del SNII por la creación de productos innovadores.`,
+    cita: ""
+  },
+  "Dr. Iván Alejandro Gutierrez Giles": {
+    isDual: false,
+    grado: "Doctor en Ingeniería",
+    institucion_corta: "INAOE",
+    facultad: "Ciencias Computacionales",
+    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    foto: 'img/ivanalejandro.png',
+    semblanza: `Es Investigador Titular A de la Coordinación de Ciencias Computacionales del INAOE. Doctor en Ingeniería por la Universidad Nacional Autónoma de México (UNAM), realizó estancias de investigación postdoctoral en instituciones de Italia y México, entre ellas la Università degli Studi di Napoli Federico II, CINVESTAV y el Instituto de Ciencias Aplicadas y Tecnología de la UNAM.<br><br>Es miembro del Sistema Nacional de Investigadoras e Investigadores, Nivel I, y Miembro Senior de IEEE desde 2025. Actualmente se desempeña como Coordinador de Actividades Educativas de la Sección Puebla de IEEE y participa en diversas asociaciones científicas nacionales.<br><br>Cuenta con una amplia producción académica, que incluye un libro de texto, 18 artículos en revistas internacionales, 28 artículos en congresos y 4 capítulos de libro.<br><br>Sus líneas de investigación se centran en robótica, manipulación y teleoperación, robótica de servicio, aplicaciones biomédicas, vehículos aéreos no tripulados (UAV), control automático, estimación de señales y sistemas electromecánicos.`,
+    cita: ""
+  },
+  "Dr. Carlos Alberto Reyes García": {
+    isDual: false,
+    grado: "Investigador",
+    institucion_corta: "INAOE",
+    facultad: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+    foto: 'img/carlosalberto.png',
+    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    cita: ""
+  },
+
+  // CONFIGURACIÓN PONENTES DUALES
+  "Dra. Nancy Pérez Castro y Dra. Adriana Laura López Lobato": {
+    isDual: true,
+    grado: "Investigadoras",
+    nombre1: "Dra. Nancy Pérez Castro",
+    fac1: "Universidad de Papaloapan",
+    inst1: "Universidad de Papaloapan",
+    foto1: 'img/iav1.png',
+    nombre2: "Dra. Adriana Laura López Lobato",
+    fac2: "IIIA - UV",
+    inst2: "Universidad Veracruzana",
+    foto2: 'img/iav2.png',
+    semblanza: `La Inteligencia Artificial (IA) transforma la ciencia, la industria y la sociedad, pero su creciente complejidad plantea un reto clave: la sostenibilidad ambiental.<br><br>Este tutorial ofrece una introducción a los conceptos de IA Verde (Green AI), distinguiendo entre green-by-AI (usar IA para fines ambientales) y green-in-AI (reducir el impacto de la propia IA), con énfasis en este último aterrizado a algoritmos evolutivos.<br><br>De forma práctica, se mostrará un ejemplo variando operadores de un algoritmo, midiendo su huella de carbono con CodeCarbon, herramienta que permite registrar el consumo energético y las emisiones de carbono estimadas durante la ejecución.`,
+    cita: ""
+  },
+  "Dr. José Luis Morales Reyes y Dr. Héctor Gabriel Acosta Mesa": {
+    isDual: true,
+    grado: "Investigadores",
+    nombre1: "Dr. José Luis Morales Reyes",
+    fac1: "Instituto de Investigaciones en Inteligencia Artificial",
+    inst1: "Universidad Veracruzana",
+    foto1: 'img/iag1.png',
+    nombre2: "Dr. Héctor Gabriel Acosta Mesa",
+    fac2: "Instituto de Investigaciones en Inteligencia Artificial",
+    inst2: "Universidad Veracruzana",
+    foto2: 'img/iag2.png',
+    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
+    cita: ""
+  },
+  "Dr. Leopoldo Altamirano Robles y Dr. José de Jesús Velázquez Arreola": {
+    isDual: true,
+    grado: "Investigadores",
+    nombre1: "Dr. Leopoldo Altamirano Robles",
+    fac1: "Ciencias Computacionales",
+    inst1: "INAOE",
+    foto1: 'img/leopoldoaltamirano.png',
+    nombre2: "Dr. José de Jesús Velázquez Arreola",
+    fac2: "Ciencias Computacionales",
+    inst2: "INAOE",
+    foto2: 'img/josejesus.png',
+    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
     cita: ""
   }
 };
@@ -256,27 +380,64 @@ function abrirModal(btn) {
   }
 
   const data = ponentesDB[name] || {
+    isDual: false,
     grado: "Información próximamente",
     institucion_corta: "Institución no especificada",
     facultad: "",
-    institucion_larga: "",
-    foto: "img/ponente.png",
+    institucion_larga: "Institución no especificada",
+    foto: 'img/ponente.png',
     semblanza: "La semblanza de este ponente estará disponible pronto.",
     cita: ""
   };
 
   document.getElementById('mod-type').innerText = type;
   document.getElementById('mod-title').innerText = title;
-
-  document.getElementById('mod-name').innerText = name;
-  document.getElementById('mod-institution-abbr').innerText = data.institucion_corta;
-
   document.getElementById('mod-date').innerText = date;
   document.getElementById('mod-time').innerText = time;
-  document.getElementById('mod-photo').src = data.foto;
+
+  // RUTEO DUAL VS INDIVIDUAL
+  if (data.isDual) {
+    document.getElementById('single-speaker-info').style.display = 'none';
+    document.getElementById('dual-speaker-info').style.display = 'flex';
+    document.getElementById('mod-photo-container').classList.add('dual');
+    document.getElementById('mod-photo2').style.display = 'inline-block';
+
+    document.getElementById('mod-photo').src = data.foto1;
+    document.getElementById('mod-photo2').src = data.foto2;
+
+    document.getElementById('mod-name1').innerText = data.nombre1;
+    document.getElementById('mod-facultad1').innerText = data.fac1;
+    document.getElementById('mod-facultad1').style.display = data.fac1 ? 'block' : 'none';
+    document.getElementById('mod-inst1').innerText = data.inst1;
+
+    document.getElementById('mod-name2').innerText = data.nombre2;
+    document.getElementById('mod-facultad2').innerText = data.fac2;
+    document.getElementById('mod-facultad2').style.display = data.fac2 ? 'block' : 'none';
+    document.getElementById('mod-inst2').innerText = data.inst2;
+
+    document.getElementById('mod-sem-name').innerText = data.nombre1 + " & " + data.nombre2;
+  } else {
+    document.getElementById('single-speaker-info').style.display = 'block';
+    document.getElementById('dual-speaker-info').style.display = 'none';
+    document.getElementById('mod-photo-container').classList.remove('dual');
+    document.getElementById('mod-photo2').style.display = 'none';
+
+    document.getElementById('mod-photo').src = data.foto;
+    document.getElementById('mod-name').innerText = name;
+
+    const facultadElem = document.getElementById('mod-facultad');
+    if (data.facultad && data.facultad.trim() !== "") {
+      facultadElem.innerText = data.facultad;
+      facultadElem.style.display = "block";
+    } else {
+      facultadElem.style.display = "none";
+    }
+
+    document.getElementById('mod-institution-larga').innerText = data.institucion_larga || data.institucion_corta;
+    document.getElementById('mod-sem-name').innerText = name;
+  }
 
   document.getElementById('mod-sem-title').innerText = title;
-  document.getElementById('mod-sem-name').innerText = name;
   document.getElementById('mod-sem-degree').innerText = data.grado;
 
   const bioContainer = document.getElementById('mod-sem-bio-container');
