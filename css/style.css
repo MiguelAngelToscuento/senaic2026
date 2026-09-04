@@ -173,6 +173,18 @@ body {
 }
 .action-card:first-child .card-icon { color: #8eb6f4; }
 
+.qr-img-card {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border: 2px solid #8b1c1c;
+  padding: 3px;
+  background: #fff;
+  display: block;
+}
+
 .card-text { flex: 1; text-align: left; }
 
 .card-text-date h3 {
@@ -288,8 +300,10 @@ a.location-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba
 
 .speaker-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .speaker-card {
@@ -297,9 +311,9 @@ a.location-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba
   background: #fff;
   border: 1px solid #e0e0e0;
   border-radius: 12px;
-  padding: 20px;
+  padding: 20px 30px;
   box-shadow: 0 4px 8px rgba(0,0,0,0.03);
-  gap: 20px;
+  gap: 30px;
   align-items: center;
   transition: transform 0.2s, box-shadow 0.2s;
 }
@@ -393,6 +407,7 @@ a.location-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba
   border: 1px dashed #ccc;
   justify-content: center;
   text-align: center;
+  padding: 15px;
 }
 .break-card .speaker-details {
   flex: none;
@@ -401,9 +416,6 @@ a.location-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba
   justify-content: center;
 }
 
-@media (max-width: 900px) {
-  .speaker-grid { grid-template-columns: 1fr; }
-}
 @media (max-width: 500px) {
   .speaker-card { flex-direction: column; text-align: center; }
   .speaker-time-row { justify-content: center; }
@@ -462,6 +474,21 @@ a.location-card:hover { transform: translateY(-5px); box-shadow: 0 6px 12px rgba
   color: #333;
   margin-bottom: 14px;
   font-weight: bold;
+}
+
+.mbr-section-btn { margin-bottom: 15px;}
+.btn-primary {
+  background-color: #8b1c1c;
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  display: inline-block;
+  transition: 0.3s;
+}
+.btn-primary:hover {
+  background-color: #b8860b;
 }
 
 /* modal */

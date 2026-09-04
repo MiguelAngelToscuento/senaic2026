@@ -2,9 +2,13 @@ function cambiarPestana(evento, idPestana) {
   if(evento) evento.preventDefault();
   document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
   document.querySelectorAll('.top-nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById(idPestana).classList.add('active');
-  if (evento && evento.currentTarget.classList.contains('top-nav-btn')) evento.currentTarget.classList.add('active');
-  else {
+
+  const tab = document.getElementById(idPestana);
+  if (tab) tab.classList.add('active');
+
+  if (evento && evento.currentTarget.classList.contains('top-nav-btn')) {
+    evento.currentTarget.classList.add('active');
+  } else {
     const idMap = {
       'pestana-inicio': 'btn-inicio',
       'pestana-programa': 'btn-programa',
@@ -14,10 +18,12 @@ function cambiarPestana(evento, idPestana) {
       'pestana-galeria': 'btn-galeria',
       'pestana-sedes': 'btn-sedes',
       'pestana-comite': 'btn-comite',
-      'pestana-contacto': 'btn-contacto'
+      'pestana-contacto': 'btn-contacto',
+      'pestana-guia': 'btn-guia'
     };
     if (idMap[idPestana]) {
-      document.getElementById(idMap[idPestana]).classList.add('active');
+      const btn = document.getElementById(idMap[idPestana]);
+      if(btn) btn.classList.add('active');
     }
   }
 }
@@ -33,36 +39,31 @@ document.addEventListener('DOMContentLoaded', () => {
       if(files.length === 0) return;
 
       Array.from(files).forEach(file => {
-        // Validar que sea imagen
         if(!file.type.startsWith('image/')) return;
 
         const reader = new FileReader();
         reader.onload = function(evt) {
           const imgSrc = evt.target.result;
 
-          // Crear contenedor de la imagen individual
           const divItem = document.createElement('div');
           divItem.className = 'gallery-item';
 
-          // Crear la imagen
           const imgEl = document.createElement('img');
           imgEl.src = imgSrc;
           imgEl.alt = "Foto de Galería";
 
-          // Crear botón eliminar
           const delBtn = document.createElement('button');
           delBtn.className = 'delete-photo-btn';
           delBtn.innerHTML = '×';
           delBtn.title = "Eliminar foto";
           delBtn.onclick = function(e) {
-            e.stopPropagation(); // Evitar comportamientos no deseados
+            e.stopPropagation();
             divItem.remove();
           };
 
           divItem.appendChild(imgEl);
           divItem.appendChild(delBtn);
 
-          // Insertar foto después de la tarjeta de "Agregar"
           const addCard = galleryGrid.querySelector('.add-photo-card');
           if(addCard) {
             addCard.insertAdjacentElement('afterend', divItem);
@@ -73,7 +74,6 @@ document.addEventListener('DOMContentLoaded', () => {
         reader.readAsDataURL(file);
       });
 
-      // Limpiar input para permitir subir la misma foto después si se borra
       uploadInput.value = '';
     });
   }
@@ -242,15 +242,15 @@ const ponentesDB = {
     cita: ""
   },
   "Dr. Leopoldo Altamirano Robles": {
-    isDual: false,
-    grado: "Doctor en Informática",
-    institucion_corta: "INAOE",
-    facultad: "Ciencias Computacionales",
-    institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
-    foto: 'img/leopoldoaltamirano.png',
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
-    cita: ""
-  },
+      isDual: false,
+      grado: "Doctor en Informática",
+      institucion_corta: "INAOE",
+      facultad: "Ciencias Computacionales",
+      institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+      foto: 'img/leopoldoaltamirano.png',
+      semblanza: `Es doctor en Informática por la Universidad Técnica de Munich en 1996. Desde 1997, es investigador del Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) en México.<br><br>Como miembro del INAOE, ha sido Director de Desarrollo Tecnológico y Director General del Instituto. Actualmente es investigador titular “C”.<br><br>El Dr. Altamirano ha dirigido numerosas Tesis de maestría y doctorado en el INAOE y ha sido responsable de varios proyectos tecnológicos con Secretarías de Gobierno, como la SEMAR, SEGOB, RENAPO e instituciones privadas.<br><br>Es coinventor de 7 patentes registradas ante el IMPI en México y una en España. Es miembro del Sistema Nacional de Investigadores de México. También es autor o coautor de numerosos artículos en journals internacionales y congresos nacionales e internacionales.<br><br>Sus áreas de interés son Inteligencia Artificial, Visión por Computadora, Aprendizaje Profundo y Visión por Computadora Explicable y sus aplicaciones.`,
+      cita: ""
+    },
   "Dr. Salvador Elías Venegas Andraca": {
     isDual: false,
     grado: "Doctor en Física",
@@ -311,6 +311,36 @@ const ponentesDB = {
     semblanza: `La semblanza de este ponente estará disponible pronto.`,
     cita: ""
   },
+  "Dr. Miguel Morales Sandoval": {
+      isDual: false,
+      grado: "Doctor en Ciencias Computacionales",
+      institucion_corta: "INAOE",
+      facultad: "Ciencias Computacionales",
+      institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
+      foto: 'img/miguelsandoval.png',
+      semblanza: `Actualmente adscrito a la Coordinación de Ciencias Computacionales como Investigador Titular B, donde participa activamente en los posgrados de Maestría y Doctorado en Ciencias Computacionales y en la Maestría en Ciencias y Tecnologías de Seguridad.<br><br>Sus líneas de investigación se centran en el desarrollo de algoritmos y esquemas criptográficos, con especial énfasis en la criptografía asimétrica y post-cuántica, enfocados en la seguridad y privacidad en la Ciencia de Datos, el Internet de las Cosas, el Cómputo en la Nube y los Sistemas Embebidos.<br><br>A la fecha, el Dr. Morales-Sandoval ha dirigido 23 tesis de maestría y 5 de doctorado, cuenta con más de 100 publicaciones científicas en revistas, congresos y libros especializados, y ha sido responsable técnico de varios proyectos con financiamiento, tanto de investigación, de desarrollo tecnológico y de fomento a las vocaciones científicas.<br><br>El Dr. Morales Sandoval es miembro de la Academia Mexicana de Ciencias y actualmente investigador Nacional Nivel 2 en el Sistema Nacional de Investigadoras e Investigadores de la SECIHTI.`,
+      cita: ""
+    },
+  "Ing. Alvaro Jair Martinez Varela": {
+    isDual: false,
+    grado: "Ingeniero",
+    institucion_corta: "Softitlan MX",
+    facultad: "",
+    institucion_larga: "Softitlan MX",
+    foto: 'img/ponente.png',
+    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    cita: ""
+  },
+  "Ing. Oscar Pérez Hernández": {
+    isDual: false,
+    grado: "Ingeniero",
+    institucion_corta: "IT-Global SystemsSolutions",
+    facultad: "",
+    institucion_larga: "IT-Global SystemsSolutions",
+    foto: 'img/ponente.png',
+    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    cita: ""
+  },
 
   // CONFIGURACIÓN PONENTES DUALES
   "Dra. Nancy Pérez Castro y Dra. Adriana Laura López Lobato": {
@@ -352,7 +382,7 @@ const ponentesDB = {
     fac2: "Ciencias Computacionales",
     inst2: "INAOE",
     foto2: 'img/josejesus.png',
-    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
+    semblanza: `La semblanza de estos ponentes estará disponible hola.`,
     cita: ""
   }
 };
