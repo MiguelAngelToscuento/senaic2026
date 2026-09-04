@@ -28,19 +28,18 @@ function cambiarPestana(evento, idPestana) {
   }
 }
 
-/* Funcionalidad para la Galería de Fotos (Permanente con Node.js) */
+/* Funcionalidad para la Galería de Fotos (Apta para Servidor PHP) */
 document.addEventListener('DOMContentLoaded', () => {
   const uploadInput = document.getElementById('foto-upload');
   const galleryGrid = document.getElementById('gallery-grid');
 
   if(galleryGrid) {
-    // Cargar fotos guardadas en el servidor al abrir la página
-    fetch('/api/fotos')
+    fetch('api.php')
       .then(res => res.json())
       .then(archivos => {
         archivos.forEach(archivo => renderizarFoto(archivo));
       })
-      .catch(err => console.log("Modo estático (sin servidor) o error:", err));
+      .catch(err => console.log("Error cargando galería:", err));
   }
 
   if(uploadInput && galleryGrid) {
@@ -51,20 +50,19 @@ document.addEventListener('DOMContentLoaded', () => {
       const formData = new FormData();
       Array.from(files).forEach(file => {
         if(file.type.startsWith('image/')) {
-          formData.append('fotos', file);
+          formData.append('fotos[]', file); // Corchetes necesarios para PHP
         }
       });
 
-      // Enviar las fotos al servidor para guardarlas permanentemente
-      fetch('/api/upload', {
+      fetch('api.php', {
         method: 'POST',
         body: formData
       })
       .then(res => res.json())
       .then(() => {
-        window.location.reload(); // Recargar para mostrar las fotos
+        window.location.reload();
       })
-      .catch(err => alert("Asegúrate de ejecutar 'node server.js' en la terminal para poder subir fotos."));
+      .catch(err => console.error('Error al subir:', err));
 
       uploadInput.value = '';
     });
@@ -75,17 +73,26 @@ document.addEventListener('DOMContentLoaded', () => {
     divItem.className = 'gallery-item';
 
     const imgEl = document.createElement('img');
-    imgEl.src = `img/galeria/${filename}`; // Busca la foto en la nueva subcarpeta
+    imgEl.src = `img/galeria/${filename}`;
     imgEl.alt = "Foto de Galería";
+
+    // Evento para abrir la imagen a pantalla completa (Lightbox)
+    imgEl.onclick = function() {
+      const overlay = document.createElement('div');
+      overlay.className = 'lightbox-overlay';
+      overlay.innerHTML = `<img src="${imgEl.src}">`;
+      overlay.onclick = () => overlay.remove(); // Se cierra al hacer clic fuera
+      document.body.appendChild(overlay);
+    };
 
     const delBtn = document.createElement('button');
     delBtn.className = 'delete-photo-btn';
     delBtn.innerHTML = '×';
     delBtn.title = "Eliminar foto";
     delBtn.onclick = function(e) {
-      e.stopPropagation();
+      e.stopPropagation(); // Evita que se abra el visor al presionar eliminar
       if(confirm("¿Seguro que deseas eliminar esta foto permanentemente?")) {
-        fetch(`/api/fotos/${filename}`, { method: 'DELETE' })
+        fetch(`api.php?file=${filename}`, { method: 'DELETE' })
           .then(() => divItem.remove())
           .catch(err => console.error('Error al eliminar:', err));
       }
