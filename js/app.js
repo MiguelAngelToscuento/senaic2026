@@ -28,54 +28,78 @@ function cambiarPestana(evento, idPestana) {
   }
 }
 
-/* Funcionalidad para la Galería de Fotos (Subir y Eliminar) */
+/* Funcionalidad para la Galería de Fotos (Permanente con Node.js) */
 document.addEventListener('DOMContentLoaded', () => {
   const uploadInput = document.getElementById('foto-upload');
   const galleryGrid = document.getElementById('gallery-grid');
+
+  if(galleryGrid) {
+    // Cargar fotos guardadas en el servidor al abrir la página
+    fetch('/api/fotos')
+      .then(res => res.json())
+      .then(archivos => {
+        archivos.forEach(archivo => renderizarFoto(archivo));
+      })
+      .catch(err => console.log("Modo estático (sin servidor) o error:", err));
+  }
 
   if(uploadInput && galleryGrid) {
     uploadInput.addEventListener('change', function(e) {
       const files = e.target.files;
       if(files.length === 0) return;
 
+      const formData = new FormData();
       Array.from(files).forEach(file => {
-        if(!file.type.startsWith('image/')) return;
-
-        const reader = new FileReader();
-        reader.onload = function(evt) {
-          const imgSrc = evt.target.result;
-
-          const divItem = document.createElement('div');
-          divItem.className = 'gallery-item';
-
-          const imgEl = document.createElement('img');
-          imgEl.src = imgSrc;
-          imgEl.alt = "Foto de Galería";
-
-          const delBtn = document.createElement('button');
-          delBtn.className = 'delete-photo-btn';
-          delBtn.innerHTML = '×';
-          delBtn.title = "Eliminar foto";
-          delBtn.onclick = function(e) {
-            e.stopPropagation();
-            divItem.remove();
-          };
-
-          divItem.appendChild(imgEl);
-          divItem.appendChild(delBtn);
-
-          const addCard = galleryGrid.querySelector('.add-photo-card');
-          if(addCard) {
-            addCard.insertAdjacentElement('afterend', divItem);
-          } else {
-            galleryGrid.appendChild(divItem);
-          }
+        if(file.type.startsWith('image/')) {
+          formData.append('fotos', file);
         }
-        reader.readAsDataURL(file);
       });
+
+      // Enviar las fotos al servidor para guardarlas permanentemente
+      fetch('/api/upload', {
+        method: 'POST',
+        body: formData
+      })
+      .then(res => res.json())
+      .then(() => {
+        window.location.reload(); // Recargar para mostrar las fotos
+      })
+      .catch(err => alert("Asegúrate de ejecutar 'node server.js' en la terminal para poder subir fotos."));
 
       uploadInput.value = '';
     });
+  }
+
+  function renderizarFoto(filename) {
+    const divItem = document.createElement('div');
+    divItem.className = 'gallery-item';
+
+    const imgEl = document.createElement('img');
+    imgEl.src = `img/galeria/${filename}`; // Busca la foto en la nueva subcarpeta
+    imgEl.alt = "Foto de Galería";
+
+    const delBtn = document.createElement('button');
+    delBtn.className = 'delete-photo-btn';
+    delBtn.innerHTML = '×';
+    delBtn.title = "Eliminar foto";
+    delBtn.onclick = function(e) {
+      e.stopPropagation();
+      if(confirm("¿Seguro que deseas eliminar esta foto permanentemente?")) {
+        fetch(`/api/fotos/${filename}`, { method: 'DELETE' })
+          .then(() => divItem.remove())
+          .catch(err => console.error('Error al eliminar:', err));
+      }
+    };
+
+    divItem.appendChild(imgEl);
+    divItem.appendChild(delBtn);
+
+    const addCard = galleryGrid.querySelector('.add-photo-card');
+    if(addCard) {
+      addCard.insertAdjacentElement('afterend', divItem);
+    } else {
+      galleryGrid.appendChild(divItem);
+    }
   }
 });
 
@@ -198,7 +222,7 @@ const ponentesDB = {
     facultad: "Centro de Investigación en Computación",
     institucion_larga: "Instituto Politécnico Nacional",
     foto: 'img/juanhumberto.png',
-    semblanza: `Obtuvo el grado de Doctor en Informática por el Instituto Nacional Politécnico de Grenoble, Francia. Es profesor de tiempo completo del Instituto Politécnico Nacional y Director del Centro de Investigación en Computación. Es miembro Emérito del Sistema Nacional de Investigadores.<br><br>Es miembro de la Academia Mexicana de Ciencias, miembro de la Academia de Ingeniería y miembro de la Academia Mexicana de Ciencias de la Computación. Es también miembro Senior del Instituto de Ingenieros Eléctricos y Electrónicos (IEEE), de la Sociedad Internacional de Redes Neuronales (INNS) y de la Academia de Maquinaria Computacional (ACM). Es miembro de la Asociación para el Avance de la Inteligencia Artificial (AAII) y Fellow de la Sociedad Mexicana de Inteligencia Artificial (SMIA). Fue presidente de esta Sociedad del 2002 a 2004.<br><br>En 2021 fue galardonado con el Premio Nacional de Computación por parte de la Academia Mexicana de la Computación (AMEXCOMP). En 2023 fue galardonado con el Premio a la Investigación en Instituto Politécnico Nacional en el área de investigación básica. En 2024 recibió por parte del Tecnológico de Estudios Superiores de Ecatepec un Doctorado Honoris Causa. En enero de 2026 fue elevado a la categoría de Académico de Honor por parte de la Academia de Ingeniería México. Finalmente, en mayo de 2026, recibió por parte de la IEEE, Región 9, el reconocimiento de Ingeniero Eminente.<br><br>Es autor de 5 libros de texto, 9 patentes, 36 derechos de autor y más de 550 trabajos de congreso y revista. Ha impartido más de 645 pláticas por invitación. Sus áreas de investigación son en Inteligencia Artificial, Aprendizaje para Máquinas, Redes Neuronales Artificiales, Análisis de Imágenes, Reconocimiento de Patrones, Robótica y Cómputo Neuromórfico.`,
+    semblanza: `Obtuvo el grado de Doctor en Informática por el Instituto Nacional Politécnico de Grenoble, Francia. Es profesor de tiempo completo del Instituto Politécnico Nacional y Director del Centro de Investigación en Computación. Es miembro Emérito del Sistema Nacional de Investigadores.<br><br>Es miembro de la Academia Mexicana de Ciencias, miembro de la Academia de Ingeniería y miembro de la Academia Mexicana de Ciencias de la Computación. Es también miembro Senior del Instituto de Ingenieros Eléctricos y Electrónicos (IEEE), de la Sociedad Internacional de Redes Neuronales (INNS) y de la Academia de Maquinaria Computacional (ACM). Es miembro de la Asociación para el Avance de la Inteligencia Artificial (AAII) y Fellow de la Sociedad Mexicana de Inteligencia Artificial (SMIA). Fue presidente de esta Sociedad del 2002 a 2004.<br><br>En 2021 fue galardonado con el Premio Nacional de Computación por parte de la Academia Mexicana de la Computación (AMEXCOMP). En 2023 fue galardonado con el Premio a la Investigación en Instituto Politécnico Nacional en el área de investigación básica. En 2024 recibió por parte del Tecnológico de Estudios Superiores de Ecatepec un Doctorado Honoris Causa. En enero de 2026 fue elevado a la categoría de Académico de Honor por parte de la Academia de Ingeniería México. Finalmente, en mayo de 2026, recibió por parte de la IEEE, Región 9, el reconocimiento de Ingeniero Eminente.<br><br>Es autor de 5 libros de texto, 9 patentes, 36 derechos de autor y más de 550 trabajos de congreso y revista. Ha impartido más de 645 pláticas por invitation. Sus áreas de investigación son en Inteligencia Artificial, Aprendizaje para Máquinas, Redes Neuronales Artificiales, Análisis de Imágenes, Reconocimiento de Patrones, Robótica y Cómputo Neuromórfico.`,
     cita: ""
   },
   "Dr. Aldo Márquez Grajales": {
@@ -273,12 +297,12 @@ const ponentesDB = {
   },
   "Dra. Delia Irazú Hernández Farías": {
     isDual: false,
-    grado: "Investigadora",
+    grado: "Doctora en Informática",
     institucion_corta: "INAOE",
     facultad: "Ciencias Computacionales",
     institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
     foto: 'img/delia.png',
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    semblanza: `Es Investigadora Titular "A" en el Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) en Puebla, México. Es Ingeniera en Sistemas Computacionales y Maestra en Ciencias en Ciencias de la Computación por el Tecnológico Nacional de México campus León. Obtuvo el grado de Doctora en Informática en la Universidad Politécnica de Valéncia, España y en la Universidad de Turín, Italia en Septiembre de 2017. Es miembro del Sistema Nacional de Investigadores Nivel I. Entre sus intereses de investigación están aprendizaje automático, reconocimiento de patrones, inteligencia artificial y principalmente en el área de las tecnologías del lenguaje aplicadas en distintas tareas como análisis de sentimientos, detección de ironía, perfilado de autoría, detección de problemas de salud mental, entre otras.`,
     cita: ""
   },
   "Dr. Humberto Pérez Espinosa": {
@@ -303,12 +327,12 @@ const ponentesDB = {
   },
   "Dr. Carlos Alberto Reyes García": {
     isDual: false,
-    grado: "Investigador",
+    grado: "Doctor en Ciencias de la Computación",
     institucion_corta: "INAOE",
     facultad: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
     institucion_larga: "Instituto Nacional de Astrofísica, Óptica y Electrónica, INAOE",
     foto: 'img/carlosalberto.png',
-    semblanza: `La semblanza de este ponente estará disponible pronto.`,
+    semblanza: `Es investigador de tiempo completo en la Coordinación de Ciencias Computacionales desde Enero 2001, jefe del laboratorio de Procesamiento de Bioseñales y Computación Médica, y es el Coordinador fundador del Programa de Posgrado en Ciencias y Tecnologías Biomédicas a partir de Agosto de 2017, en el Instituto Nacional de Astrofísica Óptica y Electrónica en Puebla, México.<br><br>Tiene un doctorado en ciencias de la computación con especialidad en inteligencia Artificial de Florida State University en Tallahassee, Florida. Es Investigador Nacional Nivel II del Sistema Nacional de Investigadores (SNI). Es el presidente nacional de la Red Temática de Inteligencia Computacional Aplicada de 2016 a la fecha, Miembro Senior de IEEE y miembro invitado de AMEXCOMP Fue presidente de la junta directiva de la Sociedad Mexicana de Inteligencia Artificial (SMIA) y ahora es Miembro Emérito.<br><br>Ha publicado más de 212 artículos en revistas científicas y actas de congresos nacionales e internacionales, 26 capítulos de libros y editado 21 libros. Ha sido director de 11 tesis de licenciatura, 36 de maestría y 11 de doctorado. Areas de interés de investigación; Inteligencia Computacional, Procesamiento y Clasificación de Bioseñales, Procesamiento, Análisis y Clasificación del Habla, Análisis y Reconocimiento del Llanto del Bebé y Clasificación de Patrones en General.`,
     cita: ""
   },
   "Dr. Miguel Morales Sandoval": {
@@ -354,7 +378,15 @@ const ponentesDB = {
     fac2: "IIIA - UV",
     inst2: "Universidad Veracruzana",
     foto2: 'img/iav2.png',
-    semblanza: `La Inteligencia Artificial (IA) transforma la ciencia, la industria y la sociedad, pero su creciente complejidad plantea un reto clave: la sostenibilidad ambiental.<br><br>Este tutorial ofrece una introducción a los conceptos de IA Verde (Green AI), distinguiendo entre green-by-AI (usar IA para fines ambientales) y green-in-AI (reducir el impacto de la propia IA), con énfasis en este último aterrizado a algoritmos evolutivos.<br><br>De forma práctica, se mostrará un ejemplo variando operadores de un algoritmo, midiendo su huella de carbono con CodeCarbon, herramienta que permite registrar el consumo energético y las emisiones de carbono estimadas durante la ejecución.`,
+    semblanza: `<strong style="color: #8b1c1c; font-size: 16px;">Dra. Nancy Pérez Castro</strong><br>
+    Es posdoctorante en el Instituto de Investigaciones en Inteligencia Artificial de la Universidad Veracruzana, institución donde también obtuvo el grado de Doctora en Inteligencia Artificial. Cuenta con el reconocimiento de Perfil Deseable PRODEP (2021-2025) y pertenece al Sistema Nacional de Investigadores, Nivel I, de la SECIHTI.<br><br>
+    Ha publicado artículos científicos como autora principal y coautora en revistas indexadas, además de textos de divulgación orientados a acercar la inteligencia artificial y la ciencia de datos a públicos amplios. Ha participado como revisora en revistas internacionales, revistas de divulgación y congresos nacionales e internacionales.<br><br>
+    Actualmente forma parte del Consejo Directivo de la Sociedad Mexicana de Ciencia de la Computación A.C. como Tesorera para el periodo 2025-2027, y es miembro regular de la Academia Mexicana de Computación A.C. desde 2025. Su trabajo se centra en inteligencia computacional, optimización metaheurística y aprendizaje computacional, con aplicaciones recientes en agricultura de precisión, medio ambiente, ecología de poblaciones e inteligencia artificial verde.<br><br>
+    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+    <strong style="color: #8b1c1c; font-size: 16px;">Dra. Adriana Laura López Lobato</strong><br>
+    Es posdoctorante en el Instituto de Investigaciones en Inteligencia Artificial de la Universidad Veracruzana, con Licenciatura, Maestría y Doctorado en Matemáticas por parte de la Facultad de Matemáticas de la Universidad Veracruzana.<br><br>
+    Esta formación Académica le ha dado una base amplia desde la cual abordar diversos temas relacionados con las matemáticas aplicadas, el modelado y la optimización, combinándolos con habilidades computacionales y de programación. Su objetivo principal es mostrar la importancia del trabajo interdisciplinario al relacionar los modelos matemáticos con diferentes áreas de las ciencias, como medicina, ciencias políticas y análisis de alimentos.<br><br>
+    Es miembro del Sistema Nacional de Investigadoras e Investigadores desde el 2023. Ganadora del Premio Sofia Kovalevskaya 2021 por parte de la Sociedad Matemática Mexicana y de la Medalla al Mérito Estudiantil "Dr. Manuel Suárez Trujillo" de la Universidad Veracruzana en el 2022, por sus estudios de doctorado. Es autora de artículos y capítulos de libros relacionados al modelado matemático aplicado en diferentes áreas de las ciencias y con participación en diferentes congresos y foros públicos.`,
     cita: ""
   },
   "Dr. José Luis Morales Reyes y Dr. Héctor Gabriel Acosta Mesa": {
@@ -368,23 +400,42 @@ const ponentesDB = {
     fac2: "Instituto de Investigaciones en Inteligencia Artificial",
     inst2: "Universidad Veracruzana",
     foto2: 'img/iag2.png',
-    semblanza: `La semblanza de estos ponentes estará disponible pronto.`,
+    semblanza: `<strong style="color: #8b1c1c; font-size: 16px;">Dr. José Luis Morales Reyes</strong><br>
+    Doctor en Inteligencia Artificial por el Instituto de Investigaciones en Inteligencia Artificial de la Universidad Veracruzana.<br><br>
+    Con una sólida trayectoria como desarrollador de software en diversos sectores, ha logrado integrar su experiencia técnica con la investigación científica. Actualmente, posdoctorante en el Centro de Investigación y Desarrollo en Alimentos de la misma Universidad, donde desarrolla algoritmos de visión computacional para la estimación de compuestos bioactivos en muestras biológicas, fortaleciendo el nexo entre tecnología, alimentación y salud.<br><br>
+    Miembro del Sistema Nacional de Investigadoras e Investigadores, cuenta con publicaciones en revistas científicas y espacios de divulgación. Fuera del ámbito académico, promueve el equilibrio personal a través del ciclismo.<br><br>
+    <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+    <strong style="color: #8b1c1c; font-size: 16px;">Dr. Héctor Gabriel Acosta Mesa</strong><br>
+    Doctor en inteligencia artificial (IA) con especialidad en análisis de imágenes por la Universidad de Sheffield, Inglaterra (2003). Maestro en IA por la Universidad Veracruzana (1997). Ingeniero en Sistemas Computacionales por el Instituto Tecnológico de Veracruz (1991).<br><br>
+    Profesor-Investigador de tiempo completo del Instituto de Investigaciones en IA de la Universidad Veracruzana desde 2004. Miembro del Sistema Nacional de Investigadores desde 2005, actualmente nivel I. Miembro de la Sociedad Mexicana de IA y miembro regular de la Academia Mexicana de Ciencia de la Computación. Vocal del Consejo Directivo de la Sociedad Mexicana de Ciencia de la Computación. Miembro de la Red Temática de Inteligencia Computacional Aplicada.<br><br>
+    Autor/coautor de más de 100 artículos de investigación especializados. Editor asociado del International Journal of Dynamics and Control, editor académico de la revista de divulgación de Inteligencia Artificial Komputer Sapiens. Su línea de interés es la investigación y aplicaciones del aprendizaje máquina y la visión computacional en imágenes médicas.`,
     cita: ""
   },
   "Dr. Leopoldo Altamirano Robles y Dr. José de Jesús Velázquez Arreola": {
-    isDual: true,
-    grado: "Investigadores",
-    nombre1: "Dr. Leopoldo Altamirano Robles",
-    fac1: "Ciencias Computacionales",
-    inst1: "INAOE",
-    foto1: 'img/leopoldoaltamirano.png',
-    nombre2: "Dr. José de Jesús Velázquez Arreola",
-    fac2: "Ciencias Computacionales",
-    inst2: "INAOE",
-    foto2: 'img/josejesus.png',
-    semblanza: `La semblanza de estos ponentes estará disponible hola.`,
-    cita: ""
-  }
+      isDual: true,
+      grado: "Investigadores",
+      nombre1: "Dr. Leopoldo Altamirano Robles",
+      fac1: "Ciencias Computacionales",
+      inst1: "INAOE",
+      foto1: 'img/leopoldoaltamirano.png',
+      nombre2: "Dr. José de Jesús Velázquez Arreola",
+      fac2: "Ciencias Computacionales",
+      inst2: "INAOE",
+      foto2: 'img/josejesus.png',
+      semblanza: `<strong style="color: #8b1c1c; font-size: 16px;">Dr. Leopoldo Altamirano Robles</strong><br>
+      Es doctor en Informática por la Universidad Técnica de Munich en 1996. Desde 1997, es investigador del Instituto Nacional de Astrofísica, Óptica y Electrónica (INAOE) en México.<br><br>
+      Como miembro del INAOE, ha sido Director de Desarrollo Tecnológico y Director General del Instituto. Actualmente es investigador titular “C”.<br><br>
+      El Dr. Altamirano ha dirigido numerosas Tesis de maestría y doctorado en el INAOE y ha sido responsable de varios proyectos tecnológicos con Secretarías de Gobierno, como la SEMAR, SEGOB, RENAPO e instituciones privadas.<br><br>
+      Es coinventor de 7 patentes registradas ante el IMPI en México y una en España. Es miembro del Sistema Nacional de Investigadores de México. También es autor o coautor de numerosos artículos en journals internacionales y congresos nacionales e internacionales.<br><br>
+      Sus áreas de interés son Inteligencia Artificial, Visión por Computadora, Aprendizaje Profundo y Visión por Computadora Explicable y sus aplicaciones.<br><br>
+      <hr style="border: 0; border-top: 1px dashed #ccc; margin: 15px 0;">
+      <strong style="color: #8b1c1c; font-size: 16px;">Dr. José de Jesús Velázquez Arreola</strong><br>
+      Es Ingeniero Mecatrónico por la BUAP y cuenta con estudios de Maestría (Ciencia y Tecnología del Espacio) y Doctorado (Ciencias y Tecnologías Biomédicas) por el INAOE.<br><br>
+      Su investigación se centra en inteligencia artificial explicable (XAI) y visión por computadora aplicada a la salud, destacando el análisis de imágenes para soporte en diagnóstico de leucemia linfoblástica.<br><br>
+      Actualmente es Posdoctorante en la Coordinación de Ciencias Computacionales en el INAOE, además de colaborador docente y coach de robótica de FRC en la Universidad Tecmilenio.<br><br>
+      Cuenta también con experiencia en vinculación tecnológica, habiendo implementado soluciones de robótica y automatización en la rama automotriz y avícola.`,
+      cita: ""
+    }
 };
 
 /* modal apertura */
